@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+<body>
+<script>
+function makeHeader(text) {
+	var x = document.createElement("H1");
+	var t = document.createTextNode(text);
+	x.appendChild(t);
+	document.body.appendChild(x);
+}
+function inputBox() {
+var x = document.createElement("INPUT");
+x.setAttribute("type", "text");
+x.setAttribute("id", "guess");
+document.body.appendChild(x);
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var z = getRandomInt(0, 1);
+var text;
+if (z == 0) {
+text = "Mega Health"
+} else {
+text = "Armor"
+}
+
+makeHeader(text);
+
+var startingNumber = getRandomInt(0, 59);
+var startingNumberHeader = document.createElement("H1");
+var startingNumberText = document.createTextNode(startingNumber);
+startingNumberHeader.appendChild(startingNumberText);
+document.body.appendChild(startingNumberHeader);
+
+var correctAnswer;
+if (z == 0) {
+if (startingNumber >= 25) {
+correctAnswer = startingNumber + 35 - 60;
+}
+if (startingNumber < 25) {
+correctAnswer = startingNumber + 35;
+}
+} else {
+if (startingNumber >= 35) {
+correctAnswer = startingNumber + 25 - 60;
+}
+if (startingNumber < 35) {
+correctAnswer = startingNumber + 25;
+}
+}
+
+inputBox();
+
+function makeGuess(){
+var x = document.getElementById("guess").value;
+if (x == correctAnswer) {
+var y = document.createElement("P");
+	var t = document.createTextNode("CORRECT!");
+	y.appendChild(t);
+	document.body.appendChild(y);
+} else {
+var y = document.createElement("P");
+	var t = document.createTextNode("INCORRECT!");
+	y.appendChild(t);
+	document.body.appendChild(y);
+}
+}
+
+</script>
+<button onclick="makeGuess()">Guess</button>
+
+
+
+
+</body>
+</html>
